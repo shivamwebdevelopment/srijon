@@ -1,0 +1,407 @@
+// @ts-nocheck
+import DarkModeSwitcher from "../../components/DarkModeSwitcher";
+import MainColorSwitcher from "../../components/MainColorSwitcher";
+import logoUrl from "../../assets/images/logo.svg";
+import illustrationUrl from "../../assets/images/illustration.svg";
+import { FormInput, FormCheck } from "../../base-components/Form";
+import clsx from "clsx";
+
+import { Disclosure } from "../../base-components/Headless";
+
+import SideMenu from "../../layouts/SideMenu";
+import SimpleMenu from "../../layouts/SideMenu";
+import TopMenu from "../../layouts/SideMenu";
+
+import TopBar from "../../components/TopBar";
+
+import { Link } from "react-router-dom";
+import siteLogo from "../../assets/images/logo.png";
+import facebookIcon from "../../assets/images/facebook.svg";
+import twitterIcon from "../../assets/images/twitter.svg";
+import linkedinIcon from "../../assets/images/linkedin.svg";
+import youtubeIcon from "../../assets/images/youtube.svg";
+import instagramIcon from "../../assets/images/instagram.svg";
+import lastSocialIcon from "../../assets/images/lastsocial.svg";
+import bannerImage from "../../assets/images/banner.png";
+
+import CarListIcon from "../../assets/images/car_list_icon.png";
+import KMIcon from "../../assets/images/km_icon.png";
+import FuelIcon from "../../assets/images/fuel_icon.png";
+import CarCancelIcon from "../../assets/images/car_cancel.png";
+
+
+import {
+   PreviewComponent,
+   Preview,
+   Source,
+   Highlight,
+} from "../../base-components/PreviewComponent";
+import { FormLabel, FormSwitch } from "../../base-components/Form";
+import { Menu, Dialog } from "../../base-components/Headless";
+import Litepicker from "../../base-components/Litepicker";
+import Button from "../../base-components/Button";
+import Lucide from "../../base-components/Lucide";
+import { useState, useRef, useEffect } from "react";
+
+import {
+   FormSelect
+} from "../../base-components/Form";
+
+import TinySlider, {
+   TinySliderElement,
+} from "../../base-components/TinySlider";
+
+import Header from "../../frontend-components/layout/header";
+import BannerMenu from "../../frontend-components/layout/bannerMenu";
+import StickyMenu from "../../frontend-components/layout/stickyMenu";
+import HomeBanner from "../../frontend-components/layout/banner";
+import Footer from "../../frontend-components/layout/footer";
+import api from "../../../apiconfig.json";
+import axios from "axios";
+import Pagination from "../../components/CustomComponents/paginations";
+import _ from "lodash";
+import BusListingSnippet from "../../frontend-components/bus/busListingSnippet";
+import BusFilter from "../../frontend-components/bus/busFilter";
+
+
+const marginTopMinus = {
+   top: -9,
+};
+const marginArrowStyle = {
+   right: -25,
+   top: 20,
+};
+
+
+import 'photoswipe/dist/photoswipe.css';
+
+import { Gallery, Item } from 'react-photoswipe-gallery';
+import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
+
+
+function Main() {
+   const server = api.API_URL;
+   const [date, setDate] = useState("");
+   // const [daterange, setDaterange] = useState("");
+   // const [datepickerModalPreview, setDatepickerModalPreview] = useState(false);
+   // const cancelButtonRef = useRef(null);
+
+   // This for slider
+   // const importantNotesRef = useRef<TinySliderElement>();
+   // const prevImportantNotes = () => {
+   //    importantNotesRef.current?.tns.goTo("prev");
+   // };
+   // const nextImportantNotes = () => {
+   //    importantNotesRef.current?.tns.goTo("next");
+   // };
+
+    //==============Fetch Data======================
+const [resData, setResData] = useState('');
+const [searchStr, setSearchStr] = useState('');
+const [dataPerPage, setDataPerPage] = useState(50);
+const [pageNo, setPageNo] = useState(0);
+const [currentPage, setCurrentPage] = useState(1);
+const [npage, setnpage] = useState(0);
+const recordPerPage = dataPerPage;
+const lastIndex = currentPage * recordPerPage;
+const firstIndex = lastIndex - recordPerPage; 
+const numbers = [...Array(npage +1).keys()].slice(1);
+
+   //===============Search Fields===================
+
+ const getSearchStr = (str)=>{
+   setSearchStr(str);
+   if(str.length >2){
+     fetchData(str,filterVal,dataPerPage,pageNo);
+   }
+   
+ }
+ 
+ const deleteSearchData = ()=>{
+   setSearchStr('');
+   setCurrentPage(1);
+   fetchData('',filterVal,dataPerPage,pageNo);
+ }
+ 
+ //==============Pagination============================
+ 
+ // const handleDataPerPage = (val)=>{
+ //   setDataPerPage(val);
+ //   console.log(val);
+ //   fetchData(searchStr,val,pageNo);
+ // }
+ const prePage = ()=>{}
+ const nextPage = ()=>{}
+ const changeCPage = ()=>{}
+ 
+   const fetchData = (value='',flt='',limit=50,pageNo=0)=>{
+ 
+      const dataStr = `?search=${value}`;
+      const filter = `&filter=${flt}`;
+      const dataLimit = `&limit=${limit}`;
+      const dataPageNo = `&sLimit=${pageNo*limit}`;
+     
+       const res = axios.get(`${server}super-transport-master/front/get-all-transport/bus${dataStr}${filter}${dataLimit}${dataPageNo}`).then((response)=> {
+         console.log("Data: ",response.data.data);
+         setResData(response.data.data); 
+         //console.log("Re:", Math.ceil(response.data.count[0].countData/recordPerPage));
+         setnpage(response.data.count[0].countData)
+         //console.log("Length: ",response.data.data.length);
+         //console.log(resData); 
+         //console.log("No Of Page:", npage);
+       })
+       .catch(function (error) {
+         console.log(error);
+         });
+  
+     
+   }
+
+   console.log("Result: ",resData);
+ 
+   const handlePage = (page)=>{
+     console.log(page);
+     setCurrentPage(page+1);
+     fetchData(searchStr,filterVal,dataPerPage,page);
+   }
+ 
+   useEffect(()=>{
+         fetchData();
+     },[]);
+const [filterVal, setFilterVal] = useState();
+
+const selectFilterType = (val)=>{
+   const str = `type-${val}`;
+   setFilterVal(str);
+   console.log(str);
+   fetchData('',str);
+}
+
+const selectFilterModel = (val)=>{
+   const str = `model-${val}`;
+   setFilterVal(str);
+   console.log(str);
+   fetchData('',str);
+}
+
+
+   return (
+      <>
+
+        {/* HEADER SECTION TWO */}
+        <StickyMenu></StickyMenu>
+         <div className="bg-white overflow-hidden relative">
+
+
+            {/* HEADER SECTION */}
+             <Header></Header>
+
+            {/* BANNER SECTION */}
+            <BrowserView>
+            <div className="banner_section relative bg-cover bg-bottom">
+               <img
+                  alt="Banner"
+                  className="w-full"
+                  src={bannerImage}
+               />
+               <div className="banner_content py-10 w-full h-full md:py-10 lg:py-20">
+                  <div className="container flex justify-center items-center h-full">
+
+                     <div className="relative">
+
+                        <h1 className="text-center text-2xl font-bold text-white pb-5 md:text-4xl md:pb-6 lg:text-5xl">Bus</h1>
+                        <p className="text-center text-sm font-medium text-white pb-8 w-full my-0 mx-auto md:text-base md:w-3/6">Experience our various exciting packages and make your hotel reservations. Find vacation packages also and search cheap hotels and events.</p>
+
+                        <BannerMenu ></BannerMenu>
+
+
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+            </BrowserView>
+            <MobileView>
+            <div className="banner_section relative bg-cover bg-bottom h-[700px]">
+               <img
+                  alt="Banner"
+                  className="w-full"
+                  src={bannerImage}
+               />
+               <div className="banner_content py-10 w-full h-full md:py-10 lg:py-20">
+                  <div className="container flex justify-center items-center h-full">
+
+                     <div className="relative">
+
+                        <h1 className="text-center text-2xl font-bold text-white pb-5 md:text-4xl md:pb-6 lg:text-5xl">Bus</h1>
+                        <p className="text-center text-sm font-medium text-white pb-8 w-full my-0 mx-auto md:text-base md:w-3/6">Experience our various exciting packages and make your hotel reservations. Find vacation packages also and search cheap hotels and events.</p>
+
+                        <BannerMenu ></BannerMenu>
+
+
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+            </MobileView>
+
+
+            {/* TOUR DETAILS SECTION */}
+
+            <div className="tour_details_section">
+               <div className="container">
+                  <div className="my-12 md:mx-6 xl:mx-0 xl:px-8">
+
+                     <div className="flex">
+
+                     <div className="w-1/4 pr-8">
+                        <BusFilter selectFilterModel={selectFilterModel} selectFilterType={selectFilterType}></BusFilter>
+                     </div>
+
+                        <div className="w-3/4">
+                              {/* SEARCH SECTION */}
+                              <div className="review_main_wrap p-4 rounded-lg bg-white border-slate-200 border-solid border shadow-lg mb-4">
+                                          <div className="flex justify-between items-center">
+                                             <div>
+                                                <h3 className="text-[18px] font-semibold pb-1">Change Dates and Guest(s)</h3>
+                                                <p className="text-sm text-orange-500">Check-in: 3 PM | Check-out: 11 AM</p>
+                                             </div>
+                                             <div>
+                                                <div className="form_area pt-0">
+                                                   <form>
+
+                                                      <div className="form_container flex justify-center align-center">
+
+
+                                                         <div className="form_field_area mx-2 relative">
+                                                            <Preview>
+                                                               <div className="relative w-40 mx-auto">
+                                                                  <div className="absolute flex items-center justify-center w-12 h-full rounded-l text-black">
+                                                                     <Lucide icon="Calendar" className="w-4 h-4" />
+                                                                  </div>
+                                                                  <div className="absolute right-0 flex items-center justify-center w-12 h-full rounded-l text-black">
+                                                                     <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M10.8755 1.72962L6.29255 7.1651C6.23799 7.22962 6.17888 7.27542 6.11523 7.30252C6.05158 7.32962 5.98338 7.34295 5.91064 7.34252C5.83789 7.34252 5.76969 7.32919 5.70604 7.30252C5.64239 7.27585 5.58328 7.23005 5.52873 7.1651L0.932151 1.72962C0.804847 1.57909 0.741195 1.39091 0.741195 1.16511C0.741195 0.939303 0.809394 0.745755 0.945791 0.584465C1.08219 0.423175 1.24132 0.34253 1.42318 0.34253C1.60504 0.34253 1.76417 0.423175 1.90057 0.584465L5.91064 5.32639L9.92071 0.584465C10.048 0.433927 10.205 0.358658 10.3915 0.358658C10.5781 0.358658 10.7395 0.439303 10.8755 0.600593C11.0119 0.761883 11.0801 0.950055 11.0801 1.16511C11.0801 1.38016 11.0119 1.56833 10.8755 1.72962Z" fill="black" />
+                                                                     </svg>
+                                                                  </div>
+                                                                  <Litepicker
+                                                                     value={date}
+                                                                     onChange={setDate}
+                                                                     options={{
+                                                                        autoApply: false,
+                                                                        showWeekNumbers: true,
+                                                                        dropdowns: {
+                                                                           minYear: 1990,
+                                                                           maxYear: null,
+                                                                           months: true,
+                                                                           years: true,
+                                                                        },
+                                                                     }}
+                                                                     className="text-black rounded-full py-2 px-9 text-sm"
+                                                                  />
+                                                               </div>
+                                                            </Preview>
+                                                         </div>
+
+                                                         <div className="form_field_area mx-2 relative">
+                                                            <Preview>
+                                                               <div className="relative w-40 mx-auto">
+                                                                  <div className="absolute flex items-center justify-center w-12 h-full rounded-l text-black">
+                                                                     <Lucide icon="Calendar" className="w-4 h-4" />
+                                                                  </div>
+                                                                  <div className="absolute right-0 flex items-center justify-center w-12 h-full rounded-l text-black">
+                                                                     <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M10.8755 1.72962L6.29255 7.1651C6.23799 7.22962 6.17888 7.27542 6.11523 7.30252C6.05158 7.32962 5.98338 7.34295 5.91064 7.34252C5.83789 7.34252 5.76969 7.32919 5.70604 7.30252C5.64239 7.27585 5.58328 7.23005 5.52873 7.1651L0.932151 1.72962C0.804847 1.57909 0.741195 1.39091 0.741195 1.16511C0.741195 0.939303 0.809394 0.745755 0.945791 0.584465C1.08219 0.423175 1.24132 0.34253 1.42318 0.34253C1.60504 0.34253 1.76417 0.423175 1.90057 0.584465L5.91064 5.32639L9.92071 0.584465C10.048 0.433927 10.205 0.358658 10.3915 0.358658C10.5781 0.358658 10.7395 0.439303 10.8755 0.600593C11.0119 0.761883 11.0801 0.950055 11.0801 1.16511C11.0801 1.38016 11.0119 1.56833 10.8755 1.72962Z" fill="black" />
+                                                                     </svg>
+                                                                  </div>
+                                                                  <Litepicker
+                                                                     value={date}
+                                                                     onChange={setDate}
+                                                                     options={{
+                                                                        autoApply: false,
+                                                                        showWeekNumbers: true,
+                                                                        dropdowns: {
+                                                                           minYear: 1990,
+                                                                           maxYear: null,
+                                                                           months: true,
+                                                                           years: true,
+                                                                        },
+                                                                     }}
+                                                                     className="text-black rounded-full py-2 px-9 text-sm"
+                                                                  />
+                                                               </div>
+                                                            </Preview>
+                                                         </div>
+
+                                                         <div className="form_field_area mx-2 relative">
+                                                            <Preview>
+                                                               <div className="relative w-52 mx-auto">
+                                                                  <div className="absolute flex items-center justify-center w-12 h-full rounded-l text-black">
+                                                                     <Lucide icon="Calendar" className="w-4 h-4" />
+                                                                  </div>
+                                                                  <FormSelect
+                                                                     className="pl-10 sm:mr-2 text-black rounded-full py-2 px-9 text-sm"
+                                                                     aria-label="Default select example"
+                                                                  >
+                                                                     <option>2 Adults (1 Room)</option>
+                                                                     <option>4 Adults (2 Room)</option>
+                                                                     <option>6 Adults (3 Room)</option>
+                                                                  </FormSelect>
+                                                               </div>
+                                                            </Preview>
+                                                         </div>
+
+                                                         <div className="form_container flex justify-center align-center">
+                                                            <div className="form_field_area mt-0">
+                                                               <input className="text-sm font-medium uppercase bg-orange-500 py-2 px-10 rounded-full text-white hover:bg-black cursor-pointer" type="submit" value="SEARCH" />
+                                                            </div>
+                                                         </div>
+
+
+                                                      </div>
+                                                      
+                                                   </form>
+                                                </div>
+                                             </div>
+                                          </div>
+                              </div>
+                                 {/* SEARCH SECTION END */}
+                           <div className="review_main_wrap p-8 rounded-lg bg-white border-slate-200 border-solid border shadow-lg">
+                              <div className="p-0">
+                              { resData.length >0 ?
+                                       _.take(resData, resData.length).map((item, Key) => (
+                                          <>
+                                             <BusListingSnippet data={item}></BusListingSnippet>
+                                          </>
+                                       ))
+                                 :'No Record Found' }
+
+                                       <Pagination
+                                             totalPosts={npage}
+                                             postsPerPage={dataPerPage}
+                                             setCurrentPage={setCurrentPage}
+                                             currentPage={currentPage}
+                                             handlePage={handlePage}
+                                          />
+
+                              </div>
+                           </div>
+                        </div>
+                        
+
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+
+            {/* FOOTER SECTION */}
+            <Footer></Footer>
+         </div>
+
+      </>
+   );
+}
+
+export default Main;

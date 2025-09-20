@@ -1,0 +1,625 @@
+div,
+p,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+input,
+textarea,
+header,
+footer,
+nav,
+section,
+article,
+figure,
+aside,
+dl,
+dt,
+dd,
+fieldset,
+legend,
+label,
+em,
+strong,
+span,
+b,
+a,
+img,
+form,
+input,
+br,
+hr {
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  background: #ffffff !important;
+  background-size: contain;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.trip_by_category_tab_section {
+  border-radius: 20px;
+  background: #FFF;
+  box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.20);
+}
+
+.feedback_box_area {
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.20);
+}
+
+.border-b-primary {
+  border-bottom-color: #F36621;
+}
+
+.trip_by_category_tab_section ul {
+  padding: 0;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.trip_by_category_tab_section .trip_by_destination_list_img ul {
+  padding: 0;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.special_tours_tab_container {
+  position: relative;
+}
+
+.special_tours_tab_container ul {
+  position: absolute;
+  left: 250px;
+  top: -70px;
+  width: 70%;
+  padding: 0;
+  margin: 0;
+}
+
+.special_tours_button_container {
+  position: absolute !important;
+  right: 0;
+  top: -75px;
+}
+
+.special_tour_cart {
+  /* border-radius: 20px;
+    border: 1px solid #E9E9E9;
+    background: #FFF;
+    box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.20); */
+  border-radius: 20px;
+  border: 1px solid #E9E9E9;
+  background: #FFF;
+  -webkit-box-shadow: 0px 1px 9px -1px rgba(0, 0, 0, 0.18);
+  -moz-box-shadow: 0px 1px 9px -1px rgba(0, 0, 0, 0.18);
+  box-shadow: 0px 1px 9px -1px rgba(0, 0, 0, 0.18);
+}
+
+.special_tours_tab_container .tiny-slider {
+  margin-left: -80px;
+}
+
+.tns-outer button {
+  display: none;
+}
+
+.mobile-menu {
+  left: -200%;
+  transition: 0.5s;
+}
+
+.mobile-menu.active {
+  left: 0;
+}
+
+.mobile-menu ul li ul {
+  display: none;
+}
+
+.mobile-menu ul li:hover ul {
+  display: block;
+}
+
+
+.header_section {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 18%, rgba(254, 215, 170, 0.5) 100%);
+}
+
+.booking_type_section {
+  position: relative;
+}
+
+.booking_type_section ul li a {
+  border-radius: 25px;
+  line-height: 45px;
+  border: rgba(255, 255, 255, 0) 2px solid;
+}
+
+.booking_type_section ul li a:hover {
+  border: #ffffff 2px solid;
+  border-radius: 25px;
+  line-height: 45px;
+  background: rgba(255, 255, 255, 0.20);
+}
+
+.booking_type_section ul li.active a {
+  border: #ffffff 2px solid;
+  border-radius: 25px;
+  line-height: 45px;
+  background: rgba(255, 255, 255, 0.20);
+}
+
+
+/* .header_section_sticky {
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 18%, rgba(254,215,170,1) 100%);
+  } */
+
+.header_mid_sticky .booking_type_section ul li a {
+  border-radius: 25px;
+  line-height: 45px;
+  border: rgba(255, 191, 147, 0) 2px solid;
+}
+
+.header_mid_sticky .booking_type_section ul li a:hover {
+  border: #ffa566 2px solid;
+  border-radius: 25px;
+  line-height: 45px;
+  background: rgba(255, 191, 147, 0.20);
+}
+
+.header_mid_sticky .booking_type_section ul li.active a {
+  border: #ffa566 2px solid;
+  border-radius: 25px;
+  line-height: 45px;
+  background: rgba(255, 191, 147, 0.20);
+}
+
+
+.header_section_sticky {
+  z-index: 100;
+  transition: all 500ms ease-in-out;
+  -ms-transition: all 500ms ease-in-out;
+  -o-transition: all 500ms ease-in-out;
+  -moz-transition: all 500ms ease-in-out;
+  -webkit-transition: all 500ms ease-in-out;
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.15);
+}
+
+
+.form_point {
+  top: -9px;
+}
+
+.arrow_style {
+  right: -25px;
+  top: 20px;
+}
+
+.sec_height {
+  height: 535px;
+}
+
+
+@media only screen and (max-width:767px) {
+
+  /* .banner_content {
+    display: none;
+} */
+
+  /* .form_area {
+    display: none;
+} */
+
+  .form_container .form_field_area {
+    margin-bottom: 15px;
+  }
+
+  .form_container .form_field_area input,
+  .form_container .form_field_area select {
+    padding: 15px 35px;
+    width: 100%;
+  }
+
+  .download_Iteinerary {
+    text-align: center;
+  }
+
+
+  .customize_your_tour {
+    display: none;
+  }
+
+  .header_social_area {
+    display: none;
+  }
+
+  .phone_section {
+    display: none;
+  }
+
+  .special_tours_tab_container {
+    position: relative;
+    margin-left: -8px;
+  }
+
+  .special_tours_tab_container ul {
+    position: inherit;
+    left: 0;
+    top: 0;
+    width: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .special_tours_button_container {
+    position: absolute !important;
+    right: 0;
+    top: -120px;
+  }
+
+  .special_tours_tab_container ul li.button {
+    padding: 0;
+    margin: 0;
+  }
+
+
+
+  /*  */
+
+  .booking_type_section ul li a {
+    /* border-radius: 25px;
+    line-height: 45px;
+    border: rgba(255, 255, 255, 0) 2px solid; */
+    font-size: 12px;
+    display: inherit;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    line-height: 28px;
+  }
+
+  .booking_type_section ul li a:hover {
+    border: #ffffff 2px solid;
+    border-radius: 25px;
+    line-height: 45px;
+    background: rgba(255, 255, 255, 0.20);
+  }
+
+  .booking_type_section ul li.active a {
+    border-bottom: #ffffff 1px solid;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+    line-height: 28px;
+    background: rgba(255, 255, 255, 0.20);
+  }
+
+  .booking_type_section ul li a img {
+    margin: 0 auto;
+  }
+
+  .banner_content {
+    padding: 20px 10px;
+  }
+
+  /*  */
+
+
+  /*  */
+
+  .header_mid_sticky .booking_type_section ul li.active a {
+    font-size: 12px;
+    display: inherit;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    border-bottom: #ffa566 1px solid;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+    line-height: 28px;
+    background: rgba(255, 191, 147, 0.20);
+  }
+
+  .header_mid_sticky .booking_type_section ul li a {
+    font-size: 12px;
+    display: inherit;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    line-height: 28px;
+  }
+
+  .header_mid_sticky .booking_type_section ul li a img {
+    margin: 0 auto;
+  }
+
+  .header_right_area {
+    position: absolute;
+    right: 12px;
+    top: 20px;
+  }
+
+  .account_section a {
+    font-size: 11px;
+    line-height: 25px;
+  }
+
+  /*  */
+
+  .arrow_style {
+    right: 30px;
+    top: 45px;
+  }
+
+  .form_field_area input,
+  .form_field_area select {
+    font-size: 15px;
+  }
+
+
+  .special_tours_tab_container ul li button {
+    font-size: 13px;
+    padding: 10px 5px;
+  }
+
+  .trip_by_category_tab_section ul li button {
+    padding: 10px 10px;
+    font-size: 12px;
+  }
+
+  .trip_by_category_tab_section ul {
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    overflow-x: scroll;
+  }
+
+
+}
+
+
+@media screen and (min-width:360px) and (max-width:767px) {}
+
+
+
+@media screen and (min-width:412px) and (max-width:767px) {}
+
+
+
+@media screen and (min-width:480px) and (max-width:767px) {}
+
+
+
+@media screen and (min-width:568px) and (max-width:767px) {}
+
+
+
+@media screen and (min-width:636px) and (max-width:767px) {}
+
+
+
+@media screen and (min-width:732px) and (max-width:1024px) {
+
+  .trip_by_category_tab_section ul {
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .special_tours_tab_container ul {
+    position: initial;
+    left: 250px;
+    top: -70px;
+    width: 90%;
+    padding: 0;
+    margin: 20px 0 0 0;
+  }
+
+  .special_tours_button_container {
+    position: absolute !important;
+    right: 0;
+    top: -120px;
+  }
+
+
+  /*  */
+
+  .header_section_sticky .header_right_top {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+  .account_section a {
+    font-size: 12px;
+    line-height: 25px;
+  }
+
+  .header_mid_sticky .booking_type_section ul li a {
+    border-radius: 25px;
+    line-height: 45px;
+    border: rgba(255, 191, 147, 0) 2px solid;
+    font-size: 13px;
+  }
+
+  .header_mid_sticky {
+    margin-top: 10px;
+  }
+
+
+  /*  */
+
+
+  /*  */
+
+  .form_container {
+    width: 80%;
+    padding: 20px 20px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .form_container .form_field_area {
+    width: 47%;
+    float: left;
+    margin-bottom: 20px;
+  }
+  .form_container .form_field_area input {
+    width: 100%;
+  }
+  .form_container .form_field_area input,
+  .form_container .form_field_area select {
+    font-size: 15px;
+  }
+  .form_container .form_field_area:nth-child(3n) {
+    width: 27%;
+  }
+  .form_container .form_field_area:nth-child(4n) {
+    width: 27%;
+  }
+  .form_container .form_field_area:nth-child(5n) {
+    width: 30%;
+  }
+
+  /*  */
+
+
+
+}
+
+
+@media screen and (min-width:768px) and (max-width:1024px) {}
+
+
+
+@media screen and (min-width:800px) and (max-width:1024px) {}
+
+
+
+@media screen and (min-width:900px) and (max-width:1024px) {}
+
+
+
+@media screen and (min-width:980px) and (max-width:1024px) {}
+
+
+
+@media screen and (min-width:1000px) and (max-width:1024px) {
+
+  .special_tours_tab_container ul {
+    left: 230px;
+  }
+
+  /* .form_area {
+        display: none;
+    } */
+
+
+    /*  */
+
+    .booking_type_section ul li a {
+      border-radius: 25px;
+      line-height: 45px;
+      border: rgba(255, 255, 255, 0) 2px solid;
+      font-size: 14px;
+  }
+
+
+    /*  */
+
+
+    .booking_type_section {
+      width: 60%;
+      margin: 0 auto;
+    }
+
+    .header_mid_sticky .booking_type_section {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+
+      /*  */
+
+  .form_container {
+    width: 80%;
+    padding: 20px 20px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .form_container .form_field_area {
+    width: 47%;
+    float: left;
+    margin-bottom: 20px;
+  }
+  .form_container .form_field_area input {
+    width: 100%;
+  }
+  .form_container .form_field_area input,
+  .form_container .form_field_area select {
+    font-size: 15px;
+  }
+  .form_container .form_field_area:nth-child(3n) {
+    width: 27%;
+  }
+  .form_container .form_field_area:nth-child(4n) {
+    width: 27%;
+  }
+  .form_container .form_field_area:nth-child(5n) {
+    width: 30%;
+  }
+
+  /*  */
+
+
+
+}
+
+
+
+@media screen and (min-width:1025px) and (max-width:1280px) {}
+
+
+
+
+
+@media screen and (min-width:1281px) and (max-width:1366px) {}
+
+@media screen and (min-width:1440px) and (max-width:1499px) {
+
+
+  .special_tours_button_container {
+    position: absolute !important;
+    right: 0;
+    top: -70px;
+  }
+
+
+}
+
+
+
+
+@media screen and (min-width:1500px) and (max-width:1999px) {}
+
+
+
+@media screen and (min-width:2000px) and (max-width:3000px) {}
